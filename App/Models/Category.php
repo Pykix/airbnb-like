@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Core\IModel;
+
 use Core\Model;
 
-class Category extends Model implements IModel
+class Category extends Model
 {
 	public string $label;
 }

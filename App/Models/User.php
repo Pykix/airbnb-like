@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Core\IModel;
+
 use Core\Model;
 
-class User extends Model implements IModel
+class User extends Model
 {
 	public string $username;
+	public string $password;
+	public string $email;
 }

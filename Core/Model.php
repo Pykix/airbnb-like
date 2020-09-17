@@ -8,7 +8,7 @@ namespace Core;
  *
  * Classe abstraite de base pour les modèles (utilise le pattern hydrator)
  */
-abstract class Model implements IModel
+abstract class Model
 {
 	// Null ou int (sera null pour les nouveaux enregistrements)
 	public ?int $id;

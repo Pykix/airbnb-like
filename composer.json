@@ -1,5 +1,6 @@
 {
     "require": {
-        "miladrahimi/phprouter": "4.*"
+        "miladrahimi/phprouter": "4.*",
+      "ext-pdo": "*"
     }
 }

@@ -24,4 +24,9 @@ class UserRepository extends Repository
 	{
 		return $this->readById( $id, User::class );
 	}
+
+	public function loginConnexion(string $password, string $name): ?User
+    {
+        return $this->login($password, $name, User::class);
+    }
 }

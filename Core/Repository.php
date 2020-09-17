@@ -19,7 +19,7 @@ abstract class Repository
 	 * CRUD (Create, Read, Update, Delete)
 	 */
 	// Create
-	public function create( IModel $object ): ?IModel
+	public function create( Model $object ): ?Model
 	{
 		// Création de la liste des colonnes
 		$arr_class_vars = get_object_vars( $object ); // on récupère un tableau associatif de ses propriétés
@@ -116,49 +116,87 @@ abstract class Repository
 		return $arr_objects;
 	}
 
-	protected function readById( int $id, string $classname ): ?IModel
-	{
-		$query = sprintf(
-			'SELECT * FROM %s WHERE id=:id',
-			$this->getTable()
-		);
+    protected function readById( int $id, string $classname ): ?Model
+    {
+        $query = sprintf(
+            'SELECT * FROM %s WHERE id=:id',
+            $this->getTable()
+        );
 
-		$sth = $this->db_cnx->prepare( $query );
-		if( !$sth ) {
-			return null;
-		}
-		// $sth->execute( [ 'id' => $id ]);
+        $sth = $this->db_cnx->prepare( $query );
+        if( !$sth ) {
+            return null;
+        }
+        // $sth->execute( [ 'id' => $id ]);
 
-		// Attachement d'un paramètre avec précision de type
-		$sth->bindValue( 'id', $id, PDO::PARAM_INT );
+        // Attachement d'un paramètre avec précision de type
+        $sth->bindValue( 'id', $id, PDO::PARAM_INT );
 
-		// Exécution de la requête préparée
-		$sth->execute();
+        // Exécution de la requête préparée
+        $sth->execute();
 
-		// En cas d'erreur du serveur SQL on retourne null
-		if( $sth->errorCode() !== PDO::ERR_NONE ) {
-			return null;
-		}
+        // En cas d'erreur du serveur SQL on retourne null
+        if( $sth->errorCode() !== PDO::ERR_NONE ) {
+            return null;
+        }
 
-		$row = $sth->fetch();
-		if( !$row ) {
-			return null;
-		}
+        $row = $sth->fetch();
+        if( !$row ) {
+            return null;
+        }
 
-		/*
-		// Pour débugguer
-		$object = new $classname( $row );
-		var_dump($object)
-		return $object;
-		*/
+        /*
+        // Pour débugguer
+        $object = new $classname( $row );
+        var_dump($object)
+        return $object;
+        */
 
-		return new $classname( $row );
-	}
+        return new $classname( $row );
+    }
+
+    protected function login( string $password, string $name, string $classname ): ?Model
+    {
+        $query = sprintf(
+            'SELECT * FROM %s WHERE username=:username AND password=:password',
+            $this->getTable()
+        );
+
+        $sth = $this->db_cnx->prepare( $query );
+        if( !$sth ) {
+            echo 'BONJOUR';
+            return null;
+        }
+        // $sth->execute( [ 'id' => $id ]);
+
+
+        ;
+        // Exécution de la requête préparée
+        $sth->execute(array(':username' => $name, ':password' => $password));
+
+        // En cas d'erreur du serveur SQL on retourne null
+        if( $sth->errorCode() !== PDO::ERR_NONE ) {
+            echo 'BONJOUR BONJOUR';
+            return null;
+        }
+
+        $row = $sth->fetch();
+        if( !$row ) {
+            echo 'NORMALEMENT JE DEVRAIS PAS PASSER PAR LA... NORMALEMENT...';
+            // TODO : gerer l'erreur de mauvaise connection
+            return null;
+        }
+
+
+        $object = new $classname( $row );
+
+        return $object;
+    }
 
 	/*
 	 * UPDATE
 	 */
-	public function update( IModel $object ): ?IModel
+	public function update( Model $object ): ?Model
 	{
 		// Création de la liste des colonnes
 		$arr_class_vars = get_object_vars( $object ); // on récupère un tableau associatif de ses propriétés

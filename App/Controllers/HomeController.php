@@ -7,16 +7,16 @@ use Core\View;
 
 use Zend\Diactoros\ServerRequest;
 
-class PageController extends Controller
+class HomeController extends Controller
 {
 	public function index(): void
 	{
 		$view = new View( 'home' );
 
 		$view_data = [
-			'html_title'	=> 'Mon Super site - accueil',
-			'html_h1'		=> 'Bienvenue !',
-			'latest_posts'	=> $this->rm->getPostRepo()->findAll()
+			'html_title'	=> 'Welc-Home - Annonces',
+			'html_h1'		=> 'Les dernieres annnoces',
+			'latest_offers'	=> $this->rm->getOfferRepo()->findAll()
 		];
 
 		$view->render( $view_data );

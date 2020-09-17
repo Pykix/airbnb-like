@@ -20,10 +20,10 @@ class RepositoryManager
 		return $this->category_repo;
 	}
 
-	private PostRepository $post_repo;
-	public function getPostRepo(): PostRepository
+	private OfferRepository $offer_repo;
+	public function getOfferRepo(): OfferRepository
 	{
-		return $this->post_repo;
+		return $this->offer_repo;
 	}
 
 	public static function getRm(): self
@@ -41,7 +41,7 @@ class RepositoryManager
 
 		$this->user_repo = new UserRepository( $pdo );
 		$this->category_repo = new CategoryRepository( $pdo );
-		$this->post_repo = new PostRepository( $pdo );
+		$this->offer_repo = new OfferRepository( $pdo );
 	}
 
 	private function __clone() { }
