@@ -27,8 +27,8 @@ class LoginController extends Controller
 
 	public function loginProcess(ServerRequest $request): void
 	{
-
 		$results = $request->getParsedBody();
+
 		$username = $results['username'];
 		$password = $results['password'];
 

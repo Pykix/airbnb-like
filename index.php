@@ -1,9 +1,10 @@
 <?php
 
 
+    use App\Controllers\OfferController;
     use Core\View;
 
-    use \App\Controllers\CategoryController;
+
     use \App\Controllers\HomeController;
     use \App\Controllers\UserController;
     use \App\Controllers\LoginController;
@@ -42,9 +43,8 @@
         ->get( '/register', LoginController::class . '@register' )
         ->post( '/register', LoginController::class . '@registerProcess' )
         ->get( '/logout', LoginController::class . '@logoutProcess' )
-        ->get( '/users/{user_id}', UserController::class . '@show' )
-        ->get( '/contact', PageController::class . '@contactFormDisplay' )
-        ->post( '/contact', PageController::class . '@contactFormProcess' );
+        ->get( '/detail/{id}', OfferController::class . '@show' );
+
 
     // Démarrage du routeur
     try {

@@ -5,14 +5,14 @@ namespace App\Controllers;
 use Core\Controller;
 use Core\View;
 
-class CategoryController extends Controller
+class DetailController extends Controller
 {
-	public function index(): void
+	public function detail(): void
 	{
-		$view = new View( 'category-list' );
+		$view = new View( 'detail' );
 
 		$view_data = [
-			'categories' => $this->rm->getCategoryRepo()->findAll()
+			'reservation' => $this->rm->getReservationRepo()->findById()
 		];
 
 		$view->render( $view_data );

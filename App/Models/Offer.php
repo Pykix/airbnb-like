@@ -14,4 +14,5 @@ class Offer extends Model
 	public string $date_creation;
 	public string $equipment_id;
 	public string $cp;
+	public string $picture;
 }

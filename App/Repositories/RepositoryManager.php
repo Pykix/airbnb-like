@@ -14,10 +14,10 @@ class RepositoryManager
 		return $this->user_repo;
 	}
 
-	private CategoryRepository $category_repo;
-	public function getCategoryRepo(): CategoryRepository
+	private ReservationRepository $reservation_repo;
+	public function getReservationRepo(): ReservationRepository
 	{
-		return $this->category_repo;
+		return $this->reservation_repo;
 	}
 
 	private OfferRepository $offer_repo;
@@ -25,6 +25,14 @@ class RepositoryManager
 	{
 		return $this->offer_repo;
 	}
+
+
+	private EquipmentOfferRepository $equipment_offer_repo;
+    public function getEquipmentOfferRepo(): EquipmentOfferRepository
+    {
+        return $this->equipment_offer_repo;
+    }
+
 
 	public static function getRm(): self
 	{
@@ -40,8 +48,9 @@ class RepositoryManager
 		$pdo = Database::get();
 
 		$this->user_repo = new UserRepository( $pdo );
-		$this->category_repo = new CategoryRepository( $pdo );
+		$this->reservation_repo = new ReservationRepository( $pdo );
 		$this->offer_repo = new OfferRepository( $pdo );
+		$this->equipment_offer_repo = new EquipmentOfferRepository( $pdo );
 	}
 
 	private function __clone() { }
