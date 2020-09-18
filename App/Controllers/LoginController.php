@@ -31,10 +31,12 @@ class LoginController extends Controller
 		$results = $request->getParsedBody();
 		$username = $results['username'];
 		$password = $results['password'];
+
         $resulat = $this->rm->getUserRepo()->loginConnexion($password, $username);
         if($resulat) {
             $_SESSION['username'] = $resulat->username;
-            var_dump($_SESSION['username']);
+            $_SESSION['role'] = $resulat->role;
+
             header('Location: /');
         }
 
@@ -56,13 +58,16 @@ class LoginController extends Controller
     {
 
         $results = $request->getParsedBody();
-        $username = $results['username'];
-        $password = $results['password'];
-        $email = $results['email'];
+
 
         $user = new User($results);
         $new_user = RepositoryManager::getRm()->getUserRepo()->create($user);
-        var_dump($new_user);
+        if(isset($new_user->id)) {
+            $_SESSION['username'] = $new_user->username;
+            $_SESSION['role'] = $new_user->role;
+
+            header('Location: /');
+        }
 
 
     }
