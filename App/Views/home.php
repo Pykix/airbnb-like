@@ -1,5 +1,9 @@
 <?php require_once '_header.php' ?>
 <h1><?php echo $html_h1 ?></h1>
+
+ <?php if (isset($_SESSION['username'])): ?>
+    <p>Bonjour <?php echo $_SESSION['username'] ?></p>
+    <?php endif; ?>
 <?php if (count( $latest_offers ) > 0): ?>
     <div class="row">
         <?php foreach ($latest_offers as $offer): ?>
