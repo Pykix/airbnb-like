@@ -36,6 +36,7 @@
             $show = RepositoryManager::getRm()->getReservationRepo()->findReservation();
             $view->render(
                 [
+                    'html_title' => 'Vos reservations',
                     'html_h1' => $_SESSION['username'],
                     'reservationDetail' => $show
                 ]

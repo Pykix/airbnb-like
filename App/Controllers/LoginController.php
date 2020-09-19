@@ -36,6 +36,7 @@ class LoginController extends Controller
         if($resulat) {
             $_SESSION['username'] = $resulat->username;
             $_SESSION['role'] = $resulat->role;
+            $_SESSION['id'] = $resulat->id;
 
             header('Location: /');
         }
