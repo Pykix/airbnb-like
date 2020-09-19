@@ -2,6 +2,7 @@
 
 
     use App\Controllers\OfferController;
+    use App\Controllers\ReservationController;
     use Core\View;
 
 
@@ -45,7 +46,9 @@
         ->get( '/register', LoginController::class . '@register' )
         ->post( '/register', LoginController::class . '@registerProcess' )
         ->get( '/logout', LoginController::class . '@logoutProcess' )
-        ->get( '/detail/{id}', OfferController::class . '@show' );
+        ->get( '/detail/{id}', OfferController::class . '@show' )
+        ->post( '/reservation', ReservationController::class . '@register' );
+
 
 
     // Démarrage du routeur

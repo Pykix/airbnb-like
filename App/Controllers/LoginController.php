@@ -65,6 +65,7 @@ class LoginController extends Controller
         if(isset($new_user->id)) {
             $_SESSION['username'] = $new_user->username;
             $_SESSION['role'] = $new_user->role;
+            $_SESSION['id'] = $new_user->id;
 
             header('Location: /');
         }

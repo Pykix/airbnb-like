@@ -7,8 +7,8 @@ use Core\Model;
 
 class Reservation extends Model
 {
-	public string $user_id;
-	public string $offer_id;
-	public string $start_date;
-	public string $end_date;
+	public int $user_id;
+	public int $offer_id;
+	public $start_date;
+	public $end_date;
 }
