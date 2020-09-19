@@ -17,7 +17,7 @@
                             <?php echo $offer->cp; ?>
                         </p>
                         <p class="card-text">
-                            <?php echo $offer->price; ?> € / nuits
+                            <?php echo $offer->price; ?> € / nuit
                         </p>
                         <a href="/detail/<?php echo $offer->id ?>" class="btn btn-primary">Reserver</a>
                     </div>

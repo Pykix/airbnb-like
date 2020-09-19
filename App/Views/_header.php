@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo ASSET_PATH . 'style' . DS .'style.css'  ?>">
+    <link rel="stylesheet" href="<?php echo ASSET_PATH . 'style' . DS . 'style.css' ?>">
     <title><?php echo $html_title ?></title>
 <body>
 <header>
@@ -26,10 +26,20 @@
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['username'])): ?>
-                        <a class="nav-link" href="/logout">logout</a>
+                        <?php
+                            if (isset( $_SESSION[ 'role' ] )):
+                                if ($_SESSION[ 'role' ] == 0): ?>
+                                    <a class="nav-link" href="/mes-annonces">Mes Annonces</a>
+                                <?php else: ?>
+                                    <a class="nav-link" href="/mes-reservations">Mes Reservations</a>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                    </li>
+                    <li class="nav-item">
+                        <?php if (isset( $_SESSION[ 'username' ] )): ?>
+                            <a class="nav-link" href="/logout">logout</a>
                         <?php else: ?>
-                        <a class="nav-link" href="/login">login</a>
+                            <a class="nav-link" href="/login">login</a>
                         <?php endif; ?>
                     </li>
 

@@ -62,8 +62,8 @@ CREATE TABLE IF NOT EXISTS `offers` (
 DELETE FROM `offers`;
 /*!40000 ALTER TABLE `offers` DISABLE KEYS */;
 INSERT INTO `offers` (`id`, `title`, `author_id`, `chapo`, `price`, `date_creation`, `cp`, `standard_id`, `picture`) VALUES
-	(2, 'Villa face mer', 1, 'Une belle villa face à la mer', 90, '2020-09-17 11:15:17', '66000', 1, 'App/assets/img/house1.jpg'),
-	(5, 'Cabane', 7, 'Une petite cabane au fond', 50, '2020-09-18 14:18:48', '31000', 2, 'App/assets/img/house2.jpg');
+	(2, 'Villa face mer', 1, 'Une belle villa face à la mer', 90, '2020-09-17 11:15:17', '66000', 1, 'house1.jpg'),
+	(5, 'Cabane', 7, 'Une petite cabane au fond', 50, '2020-09-18 14:18:48', '31000', 2, 'house2.jpg');
 /*!40000 ALTER TABLE `offers` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. offer_equipment
@@ -94,18 +94,26 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `offer_id` int(11) NOT NULL,
-  `start_date` timestamp NOT NULL,
-  `end_date` timestamp NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `reservation_offers_id_fk` (`offer_id`),
   KEY `reservation_users_id_fk` (`user_id`),
   CONSTRAINT `reservation_offers_id_fk` FOREIGN KEY (`offer_id`) REFERENCES `offers` (`id`),
   CONSTRAINT `reservation_users_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.reservation : ~0 rows (environ)
+-- Listage des données de la table welchome.reservation : ~7 rows (environ)
 DELETE FROM `reservation`;
 /*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
+INSERT INTO `reservation` (`id`, `user_id`, `offer_id`, `start_date`, `end_date`) VALUES
+	(8, 8, 5, '2020-09-21', '2020-09-25'),
+	(9, 8, 2, '2020-09-22', '2020-09-27'),
+	(10, 8, 5, '2020-09-30', '2020-09-21'),
+	(11, 8, 5, '2020-09-30', '2020-09-21'),
+	(12, 8, 5, '2020-09-21', '2020-09-28'),
+	(13, 8, 5, '2020-09-21', '2020-09-25'),
+	(14, 8, 5, '2020-10-08', '2020-11-18');
 /*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. standard
@@ -137,14 +145,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_uindex` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.users : ~2 rows (environ)
+-- Listage des données de la table welchome.users : ~3 rows (environ)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`) VALUES
 	(1, 'admin', 'azertyuiop', 'azerty@azerty.com', 0),
-	(7, 'lidem', 'lidem', 'l_gil@lidem.education', 1);
+	(7, 'lidem', 'lidem', 'l_gil@lidem.education', 1),
+	(8, 'ludo', 'admin', 'lmkqjsdf@lkqsjdf.fr', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

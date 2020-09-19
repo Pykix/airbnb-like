@@ -30,4 +30,16 @@
             }
 
         }
+        public function show():void
+        {
+            $view = new View('mes-reservations');
+            $show = RepositoryManager::getRm()->getReservationRepo()->findReservation();
+            $view->render(
+                [
+                    'html_h1' => $_SESSION['username'],
+                    'reservationDetail' => $show
+                ]
+            );
+
+        }
     }

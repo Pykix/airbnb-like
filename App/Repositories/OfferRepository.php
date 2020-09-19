@@ -12,7 +12,7 @@
         {
             return 'offers';
         }
-        // CRUD
+
         // Read: Toute la liste
         public function findAll(): array
         {
@@ -42,7 +42,7 @@
             $sth = $this->db_cnx->prepare( $query );
             $sth->execute( array( ':id' => $id ) );
 
-            // A décommenter pour afficher l'erreur de requête éventuelle
+
             // var_dump( $this->db_cnx->errorInfo() );
 
 

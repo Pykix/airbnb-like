@@ -29,6 +29,10 @@
     define('ASSET_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS);
     define('IMG_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS . 'img' . DS);
 
+    // Constante de role
+    define('ANNOUNCER', 0);
+    define('USER', 1);
+
     spl_autoload_register();
     session_start();
     // Autoload des modules de "composer"
@@ -47,7 +51,8 @@
         ->post( '/register', LoginController::class . '@registerProcess' )
         ->get( '/logout', LoginController::class . '@logoutProcess' )
         ->get( '/detail/{id}', OfferController::class . '@show' )
-        ->post( '/reservation', ReservationController::class . '@register' );
+        ->post( '/reservation', ReservationController::class . '@register' )
+        ->get( '/mes-reservations', ReservationController::class . '@show' );
 
 
 
