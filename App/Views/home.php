@@ -9,7 +9,7 @@
         <?php foreach ($latest_offers as $offer): ?>
             <div class="col-auto">
                 <div class="card" style="width: 18rem;">
-                    <img src="<?php echo $offer->picture; ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo IMG_PATH . $offer->picture; ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $offer->title ?></h5>
                         <p class="card-text">
@@ -26,4 +26,6 @@
         <?php endforeach; ?>
     </div>
 <?php endif; ?>
+
+<?php require_once '_footer.php'; ?>
 

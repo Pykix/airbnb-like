@@ -25,6 +25,8 @@
     // Chemins de fichiers
     define( 'DS', DIRECTORY_SEPARATOR );
     define( 'ROOT_PATH', dirname( __FILE__ ) . DS );
+    define('ASSET_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS);
+    define('IMG_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS . 'img' . DS);
 
     spl_autoload_register();
     session_start();
