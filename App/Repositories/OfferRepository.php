@@ -30,14 +30,14 @@
             // Tableau de résultats
             $results = '';
 
-            $query = sprintf('SELECT * FROM %s JOIN standard s on s.id = offers.standard_id
+            $query = sprintf( 'SELECT * FROM %s JOIN standard s on s.id = offers.standard_id
                         JOIN
                         (
                             SELECT id, username
                                 FROM users
                             ) u on author_id = u.id
                         
-                        WHERE offers.id =:id', $this->getTable());
+                        WHERE offers.id =:id', $this->getTable() );
             // Exécution de la requête
             $sth = $this->db_cnx->prepare( $query );
             $sth->execute( array( ':id' => $id ) );
@@ -53,7 +53,7 @@
             }
 
             // Si la requête a fonctionné, on traite le résultat
-            while ($row = $sth->fetch(PDO::FETCH_OBJ)) {
+            while ($row = $sth->fetch( PDO::FETCH_OBJ )) {
                 // ex: $classname contient 'User', alors PHP va exécuter "new User()"
                 // $obj_row = new $classname( $row );
                 $results = $row;
@@ -62,5 +62,46 @@
 
             return $results;
         }
+
+        public function findByAuthor()
+        {
+            $results = [];
+
+            $query = sprintf(
+                'SELECT * FROM %s WHERE author_id=:id',
+                $this->getTable()
+            );
+
+            $sth = $this->db_cnx->prepare( $query );
+            if (!$sth) {
+                echo 'alalalalalalalal';
+                return null;
+            }
+
+
+            // Exécution de la requête préparée
+            $sth->execute( [ ':id' => $_SESSION[ 'id' ] ] );
+
+            // En cas d'erreur du serveur SQL on retourne null
+            if ($sth->errorCode() !== PDO::ERR_NONE) {
+                return null;
+            }
+
+            while ($row = $sth->fetch( PDO::FETCH_OBJ )) {
+                // ex: $classname contient 'User', alors PHP va exécuter "new User()"
+                // $obj_row = new $classname( $row );
+                $results[] = $row;
+
+            }
+
+            /*
+            // Pour débugguer
+            $object = new $classname( $row );
+            var_dump($object)
+            return $object;
+            */
+            return $results;
+        }
+
 
     }

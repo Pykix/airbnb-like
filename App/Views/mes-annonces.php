@@ -1,23 +1,22 @@
 <?php require_once '_header.php' ?>
-    <h1>Voici vos reservations <?php echo $html_h1 ?></h1>
+    <h1>Voici vos annonces <?php echo $html_h1 ?></h1>
 
-
-    <?php if (count( $reservationDetail ) > 0): ?>
+    <?php if (count( $announces ) > 0): ?>
     <div class="row">
-        <?php foreach ($reservationDetail as $reservation): ?>
+        <?php foreach ($announces as $announce): ?>
             <div class="col-auto">
                 <div class="card" style="width: 18rem;">
-                    <img src="<?php echo IMG_PATH . $reservation->picture; ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo IMG_PATH . $announce->picture; ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $reservation->title ?></h5>
+                        <h5 class="card-title"><?php echo $announce->title ?></h5>
                         <p class="card-text">
-                            <?php echo $reservation->chapo; ?> <br>
-                            <?php echo $reservation->cp; ?>
+                            <?php echo $announce->chapo; ?> <br>
+                            <?php echo $announce->cp; ?>
                         </p>
                         <p class="card-text">
-                            <?php echo $reservation->price; ?> € / nuit
+                            <?php echo $announce->price; ?> € / nuit
                         </p>
-                        <a href="/detail/<?php echo $reservation->offer_id ?>" class="btn btn-primary">Voir</a>
+                        <a href="/detail/<?php echo $announce->id ?>" class="btn btn-primary">Voir</a>
                     </div>
                 </div>
             </div>

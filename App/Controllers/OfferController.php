@@ -25,6 +25,18 @@ class OfferController extends Controller
 		$view->render( $view_data );
 	}
 
+	public function myAnnounces()
+    {
+        $view = new View('mes-annonces');
 
+        $view_data = [
+            'html_title'	=> 'Welc-Home - Mes Annonces',
+            'html_h1' => $_SESSION['username'],
+             'announces' => $this->rm->getOfferRepo()->findByAuthor()
+        ];
+
+        $view->render($view_data);
+    }
 
 }
+

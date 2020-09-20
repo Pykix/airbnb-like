@@ -127,7 +127,7 @@ abstract class Repository
         if( !$sth ) {
             return null;
         }
-        // $sth->execute( [ 'id' => $id ]);
+
 
         // Attachement d'un paramètre avec précision de type
         $sth->bindValue( 'id', $id, PDO::PARAM_INT );
@@ -183,7 +183,7 @@ abstract class Repository
         $row = $sth->fetch();
         if( !$row ) {
             echo 'NORMALEMENT JE DEVRAIS PAS PASSER PAR LA... NORMALEMENT...';
-            // TODO : gerer l'erreur de mauvaise connection
+            // TODO : gerer l'erreur connection
             return null;
         }
 
