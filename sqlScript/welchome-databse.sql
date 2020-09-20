@@ -24,19 +24,26 @@ CREATE TABLE IF NOT EXISTS `equipments` (
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `equipments_type_uindex` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.equipments : ~7 rows (environ)
+-- Listage des données de la table welchome.equipments : ~14 rows (environ)
 DELETE FROM `equipments`;
 /*!40000 ALTER TABLE `equipments` DISABLE KEYS */;
 INSERT INTO `equipments` (`id`, `type`) VALUES
+	(13, 'balcon'),
 	(7, 'congelateur'),
+	(10, 'cuisine'),
 	(6, 'frigo'),
+	(8, 'grille pain'),
+	(12, 'jardin'),
 	(4, 'lit double'),
 	(5, 'lit simple'),
+	(9, 'machine à laver'),
 	(2, 'micro-onde'),
 	(3, 'piscine'),
-	(1, 'tv');
+	(14, 'terrasse'),
+	(1, 'tv'),
+	(11, 'wifi');
 /*!40000 ALTER TABLE `equipments` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. offers
@@ -51,19 +58,21 @@ CREATE TABLE IF NOT EXISTS `offers` (
   `cp` varchar(50) NOT NULL,
   `standard_id` int(11) NOT NULL,
   `picture` varchar(255) DEFAULT NULL,
+  `type` varchar(50) NOT NULL DEFAULT 'Entier',
   PRIMARY KEY (`id`),
   KEY `offers_users_id_fk` (`author_id`),
   KEY `offers_standard_id_fk` (`standard_id`),
   CONSTRAINT `offers_standard_id_fk` FOREIGN KEY (`standard_id`) REFERENCES `standard` (`id`),
   CONSTRAINT `offers_users_id_fk` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.offers : ~2 rows (environ)
+-- Listage des données de la table welchome.offers : ~3 rows (environ)
 DELETE FROM `offers`;
 /*!40000 ALTER TABLE `offers` DISABLE KEYS */;
-INSERT INTO `offers` (`id`, `title`, `author_id`, `chapo`, `price`, `date_creation`, `cp`, `standard_id`, `picture`) VALUES
-	(2, 'Villa face mer', 1, 'Une belle villa face à la mer', 90, '2020-09-17 11:15:17', '66000', 1, 'house1.jpg'),
-	(5, 'Cabane', 7, 'Une petite cabane au fond', 50, '2020-09-18 14:18:48', '31000', 2, 'house2.jpg');
+INSERT INTO `offers` (`id`, `title`, `author_id`, `chapo`, `price`, `date_creation`, `cp`, `standard_id`, `picture`, `type`) VALUES
+	(2, 'Villa face mer', 1, 'Une belle villa face à la mer', 90, '2020-09-17 11:15:17', '66000', 1, 'house1.jpg', 'entier'),
+	(5, 'Cabane', 7, 'Une petite cabane au fond', 50, '2020-09-18 14:18:48', '31000', 2, 'house2.jpg', 'entier'),
+	(6, 'Chambre centre ville', 1, 'Chambre centre urbain', 25, '2020-09-20 10:56:35', '34000', 3, 'house3.jpg', 'chambre');
 /*!40000 ALTER TABLE `offers` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. offer_equipment
@@ -77,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `offer_equipment` (
   CONSTRAINT `offer_equipment_offers_id_fk` FOREIGN KEY (`offer_id`) REFERENCES `offers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.offer_equipment : ~5 rows (environ)
+-- Listage des données de la table welchome.offer_equipment : ~8 rows (environ)
 DELETE FROM `offer_equipment`;
 /*!40000 ALTER TABLE `offer_equipment` DISABLE KEYS */;
 INSERT INTO `offer_equipment` (`offer_id`, `equipment_id`) VALUES
@@ -85,7 +94,10 @@ INSERT INTO `offer_equipment` (`offer_id`, `equipment_id`) VALUES
 	(2, 4),
 	(2, 3),
 	(5, 4),
-	(5, 5);
+	(5, 5),
+	(6, 11),
+	(6, 9),
+	(6, 5);
 /*!40000 ALTER TABLE `offer_equipment` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. reservation
@@ -101,9 +113,9 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   KEY `reservation_users_id_fk` (`user_id`),
   CONSTRAINT `reservation_offers_id_fk` FOREIGN KEY (`offer_id`) REFERENCES `offers` (`id`),
   CONSTRAINT `reservation_users_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.reservation : ~7 rows (environ)
+-- Listage des données de la table welchome.reservation : ~11 rows (environ)
 DELETE FROM `reservation`;
 /*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
 INSERT INTO `reservation` (`id`, `user_id`, `offer_id`, `start_date`, `end_date`) VALUES
@@ -113,7 +125,11 @@ INSERT INTO `reservation` (`id`, `user_id`, `offer_id`, `start_date`, `end_date`
 	(11, 8, 5, '2020-09-30', '2020-09-21'),
 	(12, 8, 5, '2020-09-21', '2020-09-28'),
 	(13, 8, 5, '2020-09-21', '2020-09-25'),
-	(14, 8, 5, '2020-10-08', '2020-11-18');
+	(14, 8, 5, '2020-10-08', '2020-11-18'),
+	(15, 8, 5, '2020-10-08', '2020-11-18'),
+	(16, 8, 5, '2020-10-08', '2020-11-18'),
+	(17, 8, 5, '2020-10-06', '2020-10-16'),
+	(18, 7, 2, '2020-09-23', '2020-09-26');
 /*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. standard
@@ -125,14 +141,15 @@ CREATE TABLE IF NOT EXISTS `standard` (
   `address` varchar(255) NOT NULL,
   `height` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.standard : ~2 rows (environ)
+-- Listage des données de la table welchome.standard : ~3 rows (environ)
 DELETE FROM `standard`;
 /*!40000 ALTER TABLE `standard` DISABLE KEYS */;
 INSERT INTO `standard` (`id`, `description`, `bed_nbrs`, `address`, `height`) VALUES
 	(1, 'Belle villa face a la mer blabla bla blablablabla', 2, '1 rue de la courcelle', 15),
-	(2, 'Dans cette petite cabane au fond des bois vous allez etre vraiment tranquille', 1, 'au fond des bois', 25);
+	(2, 'Dans cette petite cabane au fond des bois vous allez etre vraiment tranquille', 1, 'au fond des bois', 25),
+	(3, 'Chambre en plein centre ville, en pleine vie urbaine', 1, 'Montpellier dans le centre', 12);
 /*!40000 ALTER TABLE `standard` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. users
@@ -145,15 +162,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_uindex` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.users : ~3 rows (environ)
+-- Listage des données de la table welchome.users : ~4 rows (environ)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`) VALUES
 	(1, 'admin', 'azertyuiop', 'azerty@azerty.com', 0),
 	(7, 'lidem', 'lidem', 'l_gil@lidem.education', 1),
-	(8, 'ludo', 'admin', 'lmkqjsdf@lkqsjdf.fr', 1);
+	(8, 'ludo', 'admin', 'lmkqjsdf@lkqsjdf.fr', 1),
+	(9, 'Pykix', '123456789', 'py.gil.ludovic@gmail.fr', 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
