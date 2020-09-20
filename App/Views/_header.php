@@ -29,7 +29,7 @@
                         <?php
                             if (isset( $_SESSION[ 'role' ] )):
                                 if ($_SESSION[ 'role' ] == 0): ?>
-                                    <a class="nav-link" href="/mes-annonces">Mes Annonces</a>
+                                    <a class="nav-link" href="/mon-espace">Mon espace</a>
                                 <?php else: ?>
                                     <a class="nav-link" href="/mes-reservations">Mes Reservations</a>
                                 <?php endif; ?>

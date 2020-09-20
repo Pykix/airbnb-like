@@ -14,6 +14,12 @@ class OfferController extends Controller
 	public function show($id): void
 	{
 
+	    // TODO changer le mode de redirection
+	    if (!isset($_SESSION['username']))
+        {
+            header('Location: /login');
+        }
+
 		$view = new View( 'detail' );
 
 		$view_data = [
@@ -27,7 +33,7 @@ class OfferController extends Controller
 
 	public function myAnnounces()
     {
-        $view = new View('mes-annonces');
+        $view = new View('mon-espace');
 
         $view_data = [
             'html_title'	=> 'Welc-Home - Mes Annonces',

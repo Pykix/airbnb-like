@@ -53,7 +53,7 @@
         ->get( '/detail/{id}', OfferController::class . '@show' )
         ->post( '/reservation', ReservationController::class . '@register' )
         ->get( '/mes-reservations', ReservationController::class . '@show' )
-        ->get( '/mes-annonces', OfferController::class . '@myAnnounces' );
+        ->get( '/mon-espace', OfferController::class . '@myAnnounces' );
 
 
 

@@ -1,7 +1,7 @@
 <?php require_once '_header.php' ?>
-    <h1>Voici vos annonces <?php echo $html_h1 ?></h1>
-
-    <?php if (count( $announces ) > 0): ?>
+<a href="#add" class="btn btn-primary">Ajouter une annonce</a>
+<h2>Voici vos annonces <?php echo $html_h1 ?></h2>
+<?php if (count( $announces ) > 0): ?>
     <div class="row">
         <?php foreach ($announces as $announce): ?>
             <div class="col-auto">
@@ -23,5 +23,19 @@
         <?php endforeach; ?>
     </div>
 <?php endif; ?>
+<h2>Ajouter une annonce</h2>
+<form action="" id="add">
+    <label for="title">Titre :</label>
+    <input type="text" id="title" name="title">
+    <label for="chapo">Courte description :</label>
+    <input type="text" id="chapo" name="chapo">
+    <label for="cp">Code postal :</label>
+    <input type="text" id="cp" name="cp">
+    <label for="price">Code postal :</label>
+    <input type="text" id="price" name="price">
+    
+
+</form>
+
 
 <?php require_once '_footer.php'; ?>

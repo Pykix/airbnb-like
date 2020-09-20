@@ -30,6 +30,11 @@
             }
 
         }
+
+
+        /**
+         * Affiche les reservation des users
+         */
         public function show():void
         {
             $view = new View('mes-reservations');
