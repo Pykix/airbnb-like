@@ -49,15 +49,15 @@
         public function addAnnounces(ServerRequest $request)
         {
             $result = $request->getParsedBody();
-            $equipments = $result['equipment_id'];
-            var_dump($equipments);
-            die();
-            $offer = new Offer($result);
 
+            $equipments = $result['equipment_id'];
+            
+            $offer = new Offer($result);
             $standard = new Standard($result);
-            $truc = RepositoryManager::getRm()->getStandardRepo()->create($standard);
-            $machin = RepositoryManager::getRm()->getOfferRepo()->create($offer);
-            RepositoryManager::getRm()->getOfferRepo()->updateOfferWithStandard($truc->id, $machin->id);
+            $standardReturnObject = RepositoryManager::getRm()->getStandardRepo()->create($standard);
+            $offerReturnObject = RepositoryManager::getRm()->getOfferRepo()->create($offer);
+            RepositoryManager::getRm()->getOfferRepo()->updateOfferWithStandard($standardReturnObject->id, $offerReturnObject->id);
+
             header('Location: /mon-espace');
         }
 
