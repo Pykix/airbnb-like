@@ -9,6 +9,7 @@
     use Core\Controller;
     use Core\View;
 
+    use DateTime;
     use Zend\Diactoros\ServerRequest;
 
     class OfferController extends Controller
@@ -47,13 +48,17 @@
 
         public function addAnnounces(ServerRequest $request)
         {
-            var_dump($request->getParsedBody());
             $result = $request->getParsedBody();
+            $equipments = $result['equipment_id'];
+            var_dump($equipments);
+            die();
             $offer = new Offer($result);
+
             $standard = new Standard($result);
             $truc = RepositoryManager::getRm()->getStandardRepo()->create($standard);
-            
-
+            $machin = RepositoryManager::getRm()->getOfferRepo()->create($offer);
+            RepositoryManager::getRm()->getOfferRepo()->updateOfferWithStandard($truc->id, $machin->id);
+            header('Location: /mon-espace');
         }
 
     }

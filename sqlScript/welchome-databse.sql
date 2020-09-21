@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `equipments` (
   UNIQUE KEY `equipments_type_uindex` (`type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.equipments : ~14 rows (environ)
+-- Listage des données de la table welchome.equipments : ~11 rows (environ)
 DELETE FROM `equipments`;
 /*!40000 ALTER TABLE `equipments` DISABLE KEYS */;
 INSERT INTO `equipments` (`id`, `type`) VALUES
@@ -34,10 +34,7 @@ INSERT INTO `equipments` (`id`, `type`) VALUES
 	(7, 'congelateur'),
 	(10, 'cuisine'),
 	(6, 'frigo'),
-	(8, 'grille pain'),
 	(12, 'jardin'),
-	(4, 'lit double'),
-	(5, 'lit simple'),
 	(9, 'machine à laver'),
 	(2, 'micro-onde'),
 	(3, 'piscine'),
@@ -54,25 +51,25 @@ CREATE TABLE IF NOT EXISTS `offers` (
   `author_id` int(11) NOT NULL,
   `chapo` varchar(255) NOT NULL,
   `price` int(11) NOT NULL DEFAULT '0',
-  `date_creation` timestamp NOT NULL,
+  `date_creation` datetime NOT NULL,
   `cp` varchar(50) NOT NULL,
-  `standard_id` int(11) NOT NULL,
-  `picture` varchar(255) DEFAULT NULL,
+  `standard_id` int(11) DEFAULT NULL,
+  `picture` varchar(255) DEFAULT ' ',
   `type` varchar(50) NOT NULL DEFAULT 'Entier',
   PRIMARY KEY (`id`),
   KEY `offers_users_id_fk` (`author_id`),
   KEY `offers_standard_id_fk` (`standard_id`),
-  CONSTRAINT `offers_standard_id_fk` FOREIGN KEY (`standard_id`) REFERENCES `standard` (`id`),
   CONSTRAINT `offers_users_id_fk` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.offers : ~3 rows (environ)
+-- Listage des données de la table welchome.offers : ~4 rows (environ)
 DELETE FROM `offers`;
 /*!40000 ALTER TABLE `offers` DISABLE KEYS */;
 INSERT INTO `offers` (`id`, `title`, `author_id`, `chapo`, `price`, `date_creation`, `cp`, `standard_id`, `picture`, `type`) VALUES
 	(2, 'Villa face mer', 1, 'Une belle villa face à la mer', 90, '2020-09-17 11:15:17', '66000', 1, 'house1.jpg', 'entier'),
 	(5, 'Cabane', 7, 'Une petite cabane au fond', 50, '2020-09-18 14:18:48', '31000', 2, 'house2.jpg', 'entier'),
-	(6, 'Chambre centre ville', 1, 'Chambre centre urbain', 25, '2020-09-20 10:56:35', '34000', 3, 'house3.jpg', 'chambre');
+	(6, 'Chambre centre ville', 1, 'Chambre centre urbain', 25, '2020-09-20 10:56:35', '34000', 3, 'house3.jpg', 'chambre'),
+	(10, 'Maison test', 1, 'Une courte description', 40, '2020-09-21 00:00:00', '66170', 9, 'house4.jpg', 'chambre privee');
 /*!40000 ALTER TABLE `offers` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. offer_equipment
@@ -86,18 +83,17 @@ CREATE TABLE IF NOT EXISTS `offer_equipment` (
   CONSTRAINT `offer_equipment_offers_id_fk` FOREIGN KEY (`offer_id`) REFERENCES `offers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.offer_equipment : ~8 rows (environ)
+-- Listage des données de la table welchome.offer_equipment : ~7 rows (environ)
 DELETE FROM `offer_equipment`;
 /*!40000 ALTER TABLE `offer_equipment` DISABLE KEYS */;
 INSERT INTO `offer_equipment` (`offer_id`, `equipment_id`) VALUES
 	(2, 1),
-	(2, 4),
 	(2, 3),
-	(5, 4),
-	(5, 5),
 	(6, 11),
 	(6, 9),
-	(6, 5);
+	(10, 11),
+	(10, 9),
+	(10, 6);
 /*!40000 ALTER TABLE `offer_equipment` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. reservation
@@ -141,15 +137,16 @@ CREATE TABLE IF NOT EXISTS `standard` (
   `address` varchar(255) NOT NULL,
   `height` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.standard : ~3 rows (environ)
+-- Listage des données de la table welchome.standard : ~4 rows (environ)
 DELETE FROM `standard`;
 /*!40000 ALTER TABLE `standard` DISABLE KEYS */;
 INSERT INTO `standard` (`id`, `description`, `bed_nbrs`, `address`, `height`) VALUES
 	(1, 'Belle villa face a la mer blabla bla blablablabla', 2, '1 rue de la courcelle', 15),
 	(2, 'Dans cette petite cabane au fond des bois vous allez etre vraiment tranquille', 1, 'au fond des bois', 25),
-	(3, 'Chambre en plein centre ville, en pleine vie urbaine', 1, 'Montpellier dans le centre', 12);
+	(3, 'Chambre en plein centre ville, en pleine vie urbaine', 1, 'Montpellier dans le centre', 12),
+	(9, 'Une belle description', 1, '1 rue de la moula', 12);
 /*!40000 ALTER TABLE `standard` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. users

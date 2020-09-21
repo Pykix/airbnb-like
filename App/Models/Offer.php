@@ -8,11 +8,12 @@ use Core\Model;
 class Offer extends Model
 {
 	public string $title;
-	public string $author_id;
+	public int $author_id;
 	public string $chapo;
 	public int $price;
 	public string $date_creation;
-	public string $equipment_id;
+	public int $standard_id;
 	public string $cp;
 	public string $picture;
+	public string $type;
 }

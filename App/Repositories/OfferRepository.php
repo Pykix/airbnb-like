@@ -103,5 +103,11 @@
             return $results;
         }
 
+        public function updateOfferWithStandard( $id, $offer_id )
+        {
+            $query = sprintf( "UPDATE %s SET standard_id=:standard WHERE id=:offer_id", $this->getTable() );
+            $sth = $this->db_cnx->prepare( $query );
+            $sth->execute([':standard' => $id, ':offer_id' => $offer_id]);
 
+        }
     }
