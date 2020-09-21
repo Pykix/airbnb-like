@@ -46,19 +46,29 @@
             $view->render( $view_data );
         }
 
-        public function addAnnounces(ServerRequest $request)
+        public function addAnnounces( ServerRequest $request )
         {
             $result = $request->getParsedBody();
+            if (isset( $result[ 'equipment_id' ] )) {
 
-            $equipments = $result['equipment_id'];
-            
-            $offer = new Offer($result);
-            $standard = new Standard($result);
-            $standardReturnObject = RepositoryManager::getRm()->getStandardRepo()->create($standard);
-            $offerReturnObject = RepositoryManager::getRm()->getOfferRepo()->create($offer);
-            RepositoryManager::getRm()->getOfferRepo()->updateOfferWithStandard($standardReturnObject->id, $offerReturnObject->id);
+                $equipments = $result[ 'equipment_id' ];
+            }
 
-            header('Location: /mon-espace');
+            $offer = new Offer( $result );
+
+            $path = PATH;
+            $img = $_FILES[ 'picture' ][ 'name' ];
+            $pathImage = $path . $img;
+
+
+            $standard = new Standard( $result );
+            $standardReturnObject = RepositoryManager::getRm()->getStandardRepo()->create( $standard );
+            $offerReturnObject = RepositoryManager::getRm()->getOfferRepo()->create( $offer );
+            RepositoryManager::getRm()->getOfferRepo()->updateOfferWithStandard( $standardReturnObject->id, $offerReturnObject->id, $_FILES[ 'picture' ][ 'name' ] );
+
+            move_uploaded_file( $_FILES[ 'picture' ][ 'tmp_name' ], $pathImage );
+            header( 'Location: /mon-espace' );
+
         }
 
     }

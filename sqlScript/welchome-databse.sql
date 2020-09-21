@@ -13,12 +13,10 @@
 
 
 -- Listage de la structure de la base pour welchome
-DROP DATABASE IF EXISTS `welchome`;
 CREATE DATABASE IF NOT EXISTS `welchome` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `welchome`;
 
 -- Listage de la structure de la table welchome. equipments
-DROP TABLE IF EXISTS `equipments`;
 CREATE TABLE IF NOT EXISTS `equipments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -44,7 +42,6 @@ INSERT INTO `equipments` (`id`, `type`) VALUES
 /*!40000 ALTER TABLE `equipments` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. offers
-DROP TABLE IF EXISTS `offers`;
 CREATE TABLE IF NOT EXISTS `offers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
@@ -60,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `offers` (
   KEY `offers_users_id_fk` (`author_id`),
   KEY `offers_standard_id_fk` (`standard_id`),
   CONSTRAINT `offers_users_id_fk` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table welchome.offers : ~4 rows (environ)
 DELETE FROM `offers`;
@@ -69,11 +66,10 @@ INSERT INTO `offers` (`id`, `title`, `author_id`, `chapo`, `price`, `date_creati
 	(2, 'Villa face mer', 1, 'Une belle villa face à la mer', 90, '2020-09-17 11:15:17', '66000', 1, 'house1.jpg', 'entier'),
 	(5, 'Cabane', 7, 'Une petite cabane au fond', 50, '2020-09-18 14:18:48', '31000', 2, 'house2.jpg', 'entier'),
 	(6, 'Chambre centre ville', 1, 'Chambre centre urbain', 25, '2020-09-20 10:56:35', '34000', 3, 'house3.jpg', 'chambre'),
-	(10, 'Maison test', 1, 'Une courte description', 40, '2020-09-21 00:00:00', '66170', 9, 'house4.jpg', 'chambre privee');
+	(27, 'un poney qui tousse ?!', 1, 'La description courte', 50, '2020-09-21 00:00:00', '66170', 30, 'bateau2.jpg', 'chambre partagée');
 /*!40000 ALTER TABLE `offers` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. offer_equipment
-DROP TABLE IF EXISTS `offer_equipment`;
 CREATE TABLE IF NOT EXISTS `offer_equipment` (
   `offer_id` int(11) DEFAULT NULL,
   `equipment_id` int(11) DEFAULT NULL,
@@ -83,21 +79,17 @@ CREATE TABLE IF NOT EXISTS `offer_equipment` (
   CONSTRAINT `offer_equipment_offers_id_fk` FOREIGN KEY (`offer_id`) REFERENCES `offers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table welchome.offer_equipment : ~7 rows (environ)
+-- Listage des données de la table welchome.offer_equipment : ~4 rows (environ)
 DELETE FROM `offer_equipment`;
 /*!40000 ALTER TABLE `offer_equipment` DISABLE KEYS */;
 INSERT INTO `offer_equipment` (`offer_id`, `equipment_id`) VALUES
 	(2, 1),
 	(2, 3),
 	(6, 11),
-	(6, 9),
-	(10, 11),
-	(10, 9),
-	(10, 6);
+	(6, 9);
 /*!40000 ALTER TABLE `offer_equipment` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. reservation
-DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE IF NOT EXISTS `reservation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -129,7 +121,6 @@ INSERT INTO `reservation` (`id`, `user_id`, `offer_id`, `start_date`, `end_date`
 /*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. standard
-DROP TABLE IF EXISTS `standard`;
 CREATE TABLE IF NOT EXISTS `standard` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` text NOT NULL,
@@ -137,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `standard` (
   `address` varchar(255) NOT NULL,
   `height` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table welchome.standard : ~4 rows (environ)
 DELETE FROM `standard`;
@@ -146,11 +137,10 @@ INSERT INTO `standard` (`id`, `description`, `bed_nbrs`, `address`, `height`) VA
 	(1, 'Belle villa face a la mer blabla bla blablablabla', 2, '1 rue de la courcelle', 15),
 	(2, 'Dans cette petite cabane au fond des bois vous allez etre vraiment tranquille', 1, 'au fond des bois', 25),
 	(3, 'Chambre en plein centre ville, en pleine vie urbaine', 1, 'Montpellier dans le centre', 12),
-	(9, 'Une belle description', 1, '1 rue de la moula', 12);
+	(30, 'Une description complete', 2, '6 place de villefranche', 20);
 /*!40000 ALTER TABLE `standard` ENABLE KEYS */;
 
 -- Listage de la structure de la table welchome. users
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,

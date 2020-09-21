@@ -29,11 +29,11 @@
     </div>
 <?php endif; ?>
 <h2 id="add">Ajouter une annonce</h2>
-<form action="/add-announce" method="post" >
-    <div class="d-flex">
-        <div>
+<form action="/add-announce" method="post" enctype="multipart/form-data">
+    <div class="d-flex row">
+        <div class="col-auto">
             <input type="hidden" name="author_id" value="<?php echo $announces[ 0 ]->author_id ?>">
-            <input type="hidden" name="date_creation" value="<?php echo $date->format('Y-m-d'); ?>">
+            <input type="hidden" name="date_creation" value="<?php echo $date->format( 'Y-m-d' ); ?>">
             <div class="mb-3">
                 <label for="title" class="form-label">Titre :</label><br>
                 <input type="text" id="title" name="title" class="form-control">
@@ -46,6 +46,7 @@
                 <label for="cp" class="form-label">Code postal :</label><br>
                 <input type="text" id="cp" name="cp" class="form-control">
             </div>
+
             <div class="mb-3">
                 <label for="price" class="form-label">Prix :</label><br>
                 <input type="text" id="price" name="price" class="form-control">
@@ -58,10 +59,13 @@
                     <option value="<?php echo CHAMBRE_PARTAGEE ?>">Chambre partagée</option>
                 </select>
             </div>
+        </div>
+        <div class="col-auto">
             <div class="mb-3">
                 <label for="bed_nbrs" class="form-label">Nombre de lit :</label><br>
                 <input type="text" id="bed_nbrs" name="bed_nbrs" class="form-control">
             </div>
+
             <div class="mb-3">
                 <label for="address" class="form-label">Adresse :</label><br>
                 <input type="text" id="address" name="address" class="form-control">
@@ -74,10 +78,17 @@
                 <label for="description">Description complète :</label><br>
                 <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
             </div>
+            <div class="form-file">
+                <input type="file" class="form-file-input" name="picture" id="picture">
+                <label class="form-file-label" for="picture">
+                    <span class="form-file-text">Choisissez une image...</span>
+                    <span class="form-file-button">Chercher</span>
+                </label>
+            </div>
         </div>
-        <div>
+        <div class="col-auto">
             <h5>Equipement</h5>
-            <p>Les voayageurs s'attendent à trouver les produits de base (serviette, drap, gel douche, etc...)</p>
+            <p>Les voyageurs s'attendent à trouver les produits de base (serviette, drap, gel douche, etc...)</p>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="equipment_id[]" value="9" id="machine-a-laver">
                 <label class="form-check-label" for="machine-a-laver">
@@ -85,7 +96,7 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="equipment_id[]" value="13" id="balcon" >
+                <input class="form-check-input" type="checkbox" name="equipment_id[]" value="13" id="balcon">
                 <label class="form-check-label" for="balcon">
                     Balcon
                 </label>

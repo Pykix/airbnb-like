@@ -28,6 +28,7 @@
     define( 'ROOT_PATH', dirname( __FILE__ ) . DS );
     define('ASSET_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS);
     define('IMG_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS . 'img' . DS);
+    define('PATH', 'App' . DS . 'assets' . DS . 'img' . DS);
 
     // Constante de role
     define('ANNOUNCER', 0);
