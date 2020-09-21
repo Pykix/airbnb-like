@@ -33,6 +33,11 @@
     define('ANNOUNCER', 0);
     define('USER', 1);
 
+    //Constante de type de chambre
+    define('ENTIERE', 'entier');
+    define('CHAMBRE_PRIVEE', 'chambre privée');
+    define('CHAMBRE_PARTAGEE', 'chambre partagée');
+
     spl_autoload_register();
     session_start();
     // Autoload des modules de "composer"
@@ -53,7 +58,8 @@
         ->get( '/detail/{id}', OfferController::class . '@show' )
         ->post( '/reservation', ReservationController::class . '@register' )
         ->get( '/mes-reservations', ReservationController::class . '@show' )
-        ->get( '/mon-espace', OfferController::class . '@myAnnounces' );
+        ->get( '/mon-espace', OfferController::class . '@myAnnounces' )
+        ->post( '/add-announce', OfferController::class . '@addAnnounces' );
 
 
 

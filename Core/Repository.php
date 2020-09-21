@@ -64,7 +64,6 @@ abstract class Repository
 
 		// Préparation de la requête
 		$sth = $this->db_cnx->prepare( $query );
-
 		// Exécution de la requête avec remplacement des variables
 		// PDO va ajouter les guillements aux valeurs automatiquement
 		$sth->execute( $arr_values );
