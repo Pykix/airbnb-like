@@ -2,14 +2,14 @@
 
 <?php $offer_id = ''; ?>
 
-    <h1><?php echo $details->title ?></h1>
+
 
     <div class="page-content">
 
-        <img src="<?php echo IMG_PATH . $details->picture ?>" style="width: 50%">
-
+        <img class="my-3 rounded mx-auto d-block" src="<?php echo IMG_PATH . $details->picture ?>" style="width: 50%">
+        <h1 class="text-center my-3"><?php echo $details->title ?></h1>
         <div class="content d-flex row justify-content-around">
-            <div class="details col-auto">
+            <div class="details col-auto border-right">
                 <p>
                     <?php echo $details->description; ?> <br>
                     <?php echo $details->cp; ?>
@@ -29,6 +29,9 @@
                 <p> Nombres de lit :
                     <?php echo $details->bed_nbrs ?>
                 </p>
+                <p> Type de logement:
+                    <?php echo $details->type ?>
+                </p>
                 <p>
                     <?php echo $details->price; ?> € / nuit
                 </p>
@@ -42,7 +45,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $details->title ?></h5>
                         <form action="/reservation" method="post">
-                            <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?>">
+                            <input type="hidden" name="user_id" value="<?php echo $_SESSION[ 'id' ] ?>">
                             <input type="hidden" name="offer_id" value="<?php echo $offer_id ?>">
                             <label for="start_date" class="form-label">Date de debut :</label>
                             <input type="text" class="form-control" id="start_date" name="start_date"

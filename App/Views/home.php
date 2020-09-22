@@ -3,7 +3,7 @@
 <h1><?php echo $html_h1 ?></h1>
 
 <?php if (count( $latest_offers ) > 0): ?>
-    
+
 
     <div class="row  justify-content-around">
 
@@ -12,9 +12,7 @@
             <div class="col-auto d-flex align-items-stretch justify-content-center">
                 <div class="card mb-3 " style="width: 18rem;">
 
-
                     <img src="<?php echo IMG_PATH . $offer->picture; ?>" class="card-img-top" alt="...">
-
 
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $offer->title ?></h5>
