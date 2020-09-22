@@ -61,4 +61,47 @@
 
             return $results;
         }
+
+        public function findByReservation()
+        {
+            $results = [];
+
+            $query = sprintf(
+                'SELECT * FROM %s
+                    Join offers o on o.id = reservation.offer_id
+                    WHERE o.author_id = :id',
+                $this->getTable()
+            );
+
+            $sth = $this->db_cnx->prepare( $query );
+            if (!$sth) {
+                echo 'alalalalalalalal';
+                return null;
+            }
+
+
+            // Exécution de la requête préparée
+            $sth->execute( [ ':id' => $_SESSION[ 'id' ] ] );
+
+            // En cas d'erreur du serveur SQL on retourne null
+            if ($sth->errorCode() !== PDO::ERR_NONE) {
+                return null;
+            }
+
+            while ($row = $sth->fetch( PDO::FETCH_OBJ )) {
+                // ex: $classname contient 'User', alors PHP va exécuter "new User()"
+                // $obj_row = new $classname( $row );
+                $results[] = $row;
+
+            }
+
+            /*
+            // Pour débugguer
+            $object = new $classname( $row );
+            var_dump($object)
+            return $object;
+            */
+            return $results;
+        }
+
     }

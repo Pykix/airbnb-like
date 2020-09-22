@@ -28,6 +28,37 @@
         <?php endforeach; ?>
     </div>
 <?php endif; ?>
+
+<h2>Les reservations en cours</h2>
+<?php if (count( $reservations ) > 0): ?>
+    <div class="row">
+        <?php foreach ($reservations as $reservation): ?>
+            <div class="col-auto">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo IMG_PATH . $reservation->picture; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $reservation->title ?></h5>
+                        <p class="card-text">
+                            <?php echo $reservation->chapo; ?> <br>
+                            <?php echo $reservation->cp; ?>
+                        </p>
+                        <p class="card-text">
+                            <?php echo $reservation->price; ?> € / nuit
+                        </p>
+                        <p class="card-text">
+                            Date de debut : <?php echo $reservation->start_date; ?>
+                            Date de fin : <?php echo $reservation->end_date; ?>
+                        </p>
+                        <a href="/detail/<?php echo $announce->id ?>" class="btn btn-primary">Annuler</a>
+                        <!--TODO CHANGER LE LIEN POUR SUPPRIMER-->
+                        <a href="/detail/<?php echo $announce->id ?>" class="btn btn-danger">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
 <h2 id="add">Ajouter une annonce</h2>
 <form action="/add-announce" method="post" enctype="multipart/form-data">
     <div class="d-flex row">

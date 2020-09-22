@@ -104,6 +104,8 @@
             return $results;
         }
 
+
+
         public function updateOfferWithStandard( $id, $offer_id, $picture )
         {
             $query = sprintf( "UPDATE %s SET standard_id=:standard, picture=:picture WHERE id=:offer_id", $this->getTable() );
