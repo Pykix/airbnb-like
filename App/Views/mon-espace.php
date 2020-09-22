@@ -63,7 +63,7 @@
 <form action="/add-announce" method="post" enctype="multipart/form-data">
     <div class="d-flex row">
         <div class="col-auto">
-            <input type="hidden" name="author_id" value="<?php echo $announces[ 0 ]->author_id ?>">
+            <input type="hidden" name="author_id" value="<?php echo $_SESSION['id'] ?>">
             <input type="hidden" name="date_creation" value="<?php echo $date->format( 'Y-m-d' ); ?>">
             <div class="mb-3">
                 <label for="title" class="form-label">Titre :</label><br>
