@@ -1,7 +1,5 @@
 <?php require_once '_header.php' ?>
 
-<?php var_dump( $details ); ?>
-<?php var_dump( $equipment ); ?>
 <?php $offer_id = ''; ?>
 
     <h1><?php echo $details->title ?></h1>

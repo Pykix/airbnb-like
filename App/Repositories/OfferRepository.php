@@ -3,6 +3,7 @@
     namespace App\Repositories;
 
     use App\Models\Offer;
+    use Core\Model;
     use Core\Repository;
     use PDO;
 
@@ -110,4 +111,6 @@
             $sth->execute([':standard' => $id, ':offer_id' => $offer_id, ':picture' => $picture]);
 
         }
+
+
     }
