@@ -21,7 +21,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
@@ -35,7 +35,7 @@
                                 <?php endif; ?>
                             <?php endif; ?>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <?php if (isset( $_SESSION[ 'username' ] )): ?>
                             <a class="nav-link" href="/logout">logout</a>
                         <?php else: ?>

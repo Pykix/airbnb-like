@@ -3,15 +3,19 @@
 <h1><?php echo $html_h1 ?></h1>
 
 <?php if (count( $latest_offers ) > 0): ?>
+    
 
-
-    <div class="row">
+    <div class="row  justify-content-around">
 
         <?php foreach ($latest_offers as $offer): ?>
 
-            <div class="col-auto">
-                <div class="card" style="width: 18rem;">
+            <div class="col-auto d-flex align-items-stretch justify-content-center">
+                <div class="card mb-3 " style="width: 18rem;">
+
+
                     <img src="<?php echo IMG_PATH . $offer->picture; ?>" class="card-img-top" alt="...">
+
+
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $offer->title ?></h5>
                         <p class="card-text">
@@ -24,6 +28,8 @@
                         <a href="/detail/<?php echo $offer->id ?>" class="btn btn-primary">Reserver</a>
                     </div>
                 </div>
+
+
             </div>
 
         <?php endforeach; ?>
