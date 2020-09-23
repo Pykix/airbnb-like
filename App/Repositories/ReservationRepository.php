@@ -25,6 +25,12 @@
             return $this->readById( $id, Reservation::class );
         }
 
+
+        /**
+         * retourne les reservations
+         *
+         * @return array
+         */
         public function findReservation()
         {
             // Tableau de résultats
@@ -62,6 +68,12 @@
             return $results;
         }
 
+        /**
+         *
+         * Recherche par reservation
+         *
+         * @return array|null
+         */
         public function findByReservation()
         {
             if ($_SESSION['role'] != 0) {

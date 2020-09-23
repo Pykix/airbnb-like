@@ -39,11 +39,11 @@
                         <?php if (isset( $_SESSION[ 'username' ] )): ?>
                             <a class="nav-link" href="/logout">logout</a>
                         <?php else: ?>
-                            <!-- Button trigger modal -->
-                            <button  class="nav-link styled" data-toggle="modal" data-target="#staticBackdrop">
+                            <!--Boutton de la modal de login-->
+                            <button class="nav-link styled" data-toggle="modal" data-target="#staticBackdrop">
                                 Connexion / Inscription
                             </button>
-                           <!-- <a class="" href="/login">login</a>-->
+
                         <?php endif; ?>
                     </li>
 

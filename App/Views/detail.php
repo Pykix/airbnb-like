@@ -7,10 +7,13 @@
         <img class="my-3 rounded mx-auto d-block" src="<?php echo IMG_PATH . $details->picture ?>" style="width: 50%">
         <h1 class="text-center my-3"><?php echo $details->title ?></h1>
         <div class="content d-flex row justify-content-around">
-            <div class="details col-auto border-right">
+            <div class="details col-md-8 border-right">
                 <p>
                     <?php echo $details->description; ?> <br>
-                    <?php echo $details->cp; ?>
+
+                </p>
+                <p>
+                    adresse : <?php echo $details->address . ', ' . $details->cp; ?>
                 </p>
                 <p>equipement :
                     <?php foreach ($equipment as $object) {
@@ -35,7 +38,7 @@
                 </p>
             </div>
 
-            <div class="reservation-zone col-auto">
+            <div class="reservation-zone col-md-auto">
                 <div class="card my-2">
                     <div class="card-header">
                         Reservation
@@ -52,7 +55,7 @@
                             <input type="text" class="form-control" id="end_date" name="end_date"
                                    placeholder="Choisissez une date">
 
-                            <button class="btn btn-primary " type="submit">Reserver</button>
+                            <button class="btn btn-primary mt-2" type="submit">Reserver</button>
                         </form>
 
                     </div>

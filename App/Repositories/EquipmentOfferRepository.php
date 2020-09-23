@@ -11,11 +11,22 @@
 
     class EquipmentOfferRepository extends Repository
     {
+
+        /**
+         * @return string
+         */
         public function getTable(): string
         {
             return 'offer_equipment';
         }
 
+        /**
+         * Retourne le details des equipements par annonce
+         *
+         * @param $id
+         *
+         * @return array
+         */
         public function equipmentDetails( $id )
         {
             // Tableau de résultats
@@ -53,6 +64,16 @@
             return $results;
         }
 
+        /**
+         *
+         * Permet de créer un objet avec les details de l'annonce et les equipement.
+         *
+         * @param Model $object
+         * @param       $equipment_id
+         * @param       $offer_id
+         *
+         * @return Model|null
+         */
         public function multipleCreate( Model $object, $equipment_id, $offer_id ): ?Model
         {
             // Création de la liste des colonnes

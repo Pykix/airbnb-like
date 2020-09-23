@@ -11,44 +11,58 @@
 
     class ReservationController
     {
-        public function register(ServerRequest $request): void
+
+        /**
+         * Enregistrement d'une reservation d'annonce
+         *
+         * @param ServerRequest $request
+         */
+        public function register( ServerRequest $request ): void
         {
 
-            $view = new View('reservation');
+            $view = new View( 'reservation' );
 
             $results = $request->getParsedBody();
 
-            $newReservation = new Reservation($results);
+            $newReservation = new Reservation( $results );
 
-            $reservation = RepositoryManager::getRm()->getReservationRepo()->create($newReservation);
-            if (isset($reservation->id)) {
-               $view->render(
-                   [
-                       'offer_id' => $reservation->id
-                   ]
-               );
+            $reservation = RepositoryManager::getRm()->getReservationRepo()->create( $newReservation );
+            if (isset( $reservation->id )) {
+                $view->render(
+                    [
+                        'offer_id' => $reservation->id
+                    ]
+                );
             }
 
         }
 
-        public function delete($id)
+        /**
+         * Suppression d'une reservation
+         *
+         * @param $id
+         */
+        public function delete( $id )
         {
-
-            RepositoryManager::getRm()->getReservationRepo()->delete($id);
-            header('Location: /mes-reservations');
+            RepositoryManager::getRm()->getEquipmentOfferRepo()->delete($id);
+            RepositoryManager::getRm()->getReservationRepo()->delete( $id );
+            if ($_SESSION[ 'role' ] == 0) {
+                header( 'Location: /mon-espace' );
+            }
+            header( 'Location: /mes-reservations' );
         }
 
         /**
          * Affiche les reservation des users
          */
-        public function show():void
+        public function show(): void
         {
-            $view = new View('mes-reservations');
+            $view = new View( 'mes-reservations' );
             $show = RepositoryManager::getRm()->getReservationRepo()->findReservation();
             $view->render(
                 [
                     'html_title' => 'Vos reservations',
-                    'html_h1' => $_SESSION['username'],
+                    'html_h1' => $_SESSION[ 'username' ],
                     'reservationDetail' => $show
                 ]
             );

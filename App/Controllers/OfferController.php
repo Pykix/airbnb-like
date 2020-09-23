@@ -15,13 +15,15 @@
 
     class OfferController extends Controller
     {
+        /**
+         * Affiche les annonces en details
+         *
+         * @param $id
+         */
         public function show( $id ): void
         {
 
-            // TODO changer le mode de redirection
-            if (!isset( $_SESSION[ 'username' ] )) {
-                header( 'Location: /login' );
-            }
+
 
             $view = new View( 'detail' );
 
@@ -34,6 +36,10 @@
             $view->render( $view_data );
         }
 
+
+        /**
+         * Affiche les annonces qu'un annonceur a posté
+         */
         public function myAnnounces()
         {
             $view = new View( 'mon-espace' );
@@ -48,6 +54,11 @@
             $view->render( $view_data );
         }
 
+        /**
+         * Ajout d'annonce
+         *
+         * @param ServerRequest $request
+         */
         public function addAnnounces( ServerRequest $request )
         {
             $result = $request->getParsedBody();

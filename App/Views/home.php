@@ -54,7 +54,13 @@
                                 <p class="card-text">
                                     <?php echo $offer->price; ?> € / nuit
                                 </p>
-                                <a href="/detail/<?php echo $offer->id ?>" class="btn btn-primary">Reserver</a>
+                                <?php if (isset( $_SESSION[ 'username' ] )): ?>
+                                    <a href="/detail/<?php echo $offer->id ?>" class="btn btn-primary">Reserver</a>
+                                <?php else: ?>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                                        Connectez vous pour reserver
+                                    </button>
+                                <?php endif; ?>
                             </div>
                         </div>
 

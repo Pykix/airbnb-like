@@ -26,18 +26,18 @@
     // Chemins de fichiers
     define( 'DS', DIRECTORY_SEPARATOR );
     define( 'ROOT_PATH', dirname( __FILE__ ) . DS );
-    define('ASSET_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS);
-    define('IMG_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS . 'img' . DS);
-    define('PATH', 'App' . DS . 'assets' . DS . 'img' . DS);
+    define( 'ASSET_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS );
+    define( 'IMG_PATH', 'http://local.welchome.net' . DS . 'App' . DS . 'assets' . DS . 'img' . DS );
+    define( 'PATH', 'App' . DS . 'assets' . DS . 'img' . DS );
 
     // Constante de role
-    define('ANNOUNCER', 0);
-    define('USER', 1);
+    define( 'ANNOUNCER', 0 );
+    define( 'USER', 1 );
 
     //Constante de type de chambre
-    define('ENTIERE', 'entier');
-    define('CHAMBRE_PRIVEE', 'chambre privée');
-    define('CHAMBRE_PARTAGEE', 'chambre partagée');
+    define( 'ENTIERE', 'entier' );
+    define( 'CHAMBRE_PRIVEE', 'chambre privée' );
+    define( 'CHAMBRE_PARTAGEE', 'chambre partagée' );
 
     spl_autoload_register();
     session_start();
@@ -62,7 +62,6 @@
         ->get( '/mes-reservations', ReservationController::class . '@show' )
         ->get( '/mon-espace', OfferController::class . '@myAnnounces' )
         ->post( '/add-announce', OfferController::class . '@addAnnounces' );
-
 
 
     // Démarrage du routeur

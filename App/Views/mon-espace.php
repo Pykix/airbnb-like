@@ -2,13 +2,13 @@
 
 <?php $date = new DateTime(); ?>
 
-<a href="#add" class="btn btn-primary">Ajouter une annonce</a>
-<h2>Voici vos annonces <?php echo $html_h1 ?></h2>
+<a href="#add" class="btn btn-primary my-3">Ajouter une annonce</a>
+<h2 class="mb-5">Voici vos annonces <?php echo $html_h1 ?></h2>
 <?php if (count( $announces ) > 0): ?>
     <div class="row">
         <?php foreach ($announces as $announce): ?>
-            <div class="col-auto">
-                <div class="card" style="width: 18rem;">
+            <div class="col-auto d-flex align-items-stretch justify-content-start">
+                <div class="card mb-3 " style="width: 18rem;">
                     <img src="<?php echo IMG_PATH . $announce->picture; ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $announce->title ?></h5>
@@ -21,7 +21,7 @@
                         </p>
                         <a href="/detail/<?php echo $announce->id ?>" class="btn btn-primary">Voir</a>
                         <!--TODO CHANGER LE LIEN POUR SUPPRIMER-->
-                        <a href="/detail/<?php echo $announce->id ?>" class="btn btn-danger">Supprimer</a>
+                        <a href="/delete/<?php echo $announce->id ?>" class="btn btn-danger">Supprimer</a>
                     </div>
                 </div>
             </div>
@@ -29,12 +29,12 @@
     </div>
 <?php endif; ?>
 
-<h2>Les reservations en cours</h2>
+<h2 class="mb-5">Les reservations en cours</h2>
 <?php if (count( $reservations ) > 0): ?>
     <div class="row">
         <?php foreach ($reservations as $reservation): ?>
-            <div class="col-auto">
-                <div class="card" style="width: 18rem;">
+            <div class="col-auto col-auto d-flex align-items-stretch justify-content-start">
+                <div class="card mb-3" style="width: 18rem;">
                     <img src="<?php echo IMG_PATH . $reservation->picture; ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $reservation->title ?></h5>
@@ -60,7 +60,7 @@
 <?php endif; ?>
 
 <h2 id="add">Ajouter une annonce</h2>
-<form action="/add-announce" method="post" enctype="multipart/form-data">
+<form action="/add-announce" method="post" enctype="multipart/form-data" class="mb-4">
     <div class="d-flex row">
         <div class="col-auto">
             <input type="hidden" name="author_id" value="<?php echo $_SESSION['id'] ?>">
@@ -152,7 +152,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div >
         <button class="btn btn-success">Ajouter</button>
     </div>
 </form>

@@ -26,6 +26,14 @@
             return $this->readById( $id, Offer::class );
         }
 
+        /**
+         *
+         * Retourne les details d'une annonces
+         *
+         * @param $id
+         *
+         * @return mixed|string
+         */
         public function details( $id )
         {
             // Tableau de résultats
@@ -64,6 +72,12 @@
             return $results;
         }
 
+
+        /**
+         * Trouve une annonce par auteur
+         *
+         * @return array|null
+         */
         public function findByAuthor()
         {
             $results = [];
@@ -105,7 +119,14 @@
         }
 
 
-
+        /**
+         *
+         * Update une annonce avec les details, et le path de la photo
+         *
+         * @param $id
+         * @param $offer_id
+         * @param $picture
+         */
         public function updateOfferWithStandard( $id, $offer_id, $picture )
         {
             $query = sprintf( "UPDATE %s SET standard_id=:standard, picture=:picture WHERE id=:offer_id", $this->getTable() );

@@ -9,6 +9,10 @@ use Zend\Diactoros\ServerRequest;
 
 class HomeController extends Controller
 {
+    /**
+     * Page d'acceil qui affiche toutes les annonces
+     * commencent par la plus recente
+     */
 	public function index(): void
 	{
 		$view = new View( 'home' );

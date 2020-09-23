@@ -11,20 +11,11 @@ use Zend\Diactoros\ServerRequest;
 
 class LoginController extends Controller
 {
-/*	public function login(): void
-	{
-		$view = new View( 'login' );
-
-		$view_data = [
-			'html_title'	=> 'Welc-Home - Login',
-			'html_h1'		=> 'connexion',
-
-		];
-
-		$view->render( $view_data );
-	}*/
-
-
+    /**
+     * Gestion de la connexion
+     *
+     * @param ServerRequest $request
+     */
 	public function loginProcess(ServerRequest $request): void
 	{
 		$results = $request->getParsedBody();
@@ -43,18 +34,11 @@ class LoginController extends Controller
 
 	}
 
-/*	public function register():void
-    {
-        $view = new View('register');
-
-        $view_data = [
-            'html_title'	=> 'Welc-Home - Register',
-            'html_h1'		=> 'Inscription',
-
-        ];
-        $view->render($view_data);
-    }*/
-
+    /**
+     * Gestion de l'enregistrement d'user
+     *
+     * @param ServerRequest $request
+     */
     public function registerProcess(ServerRequest $request): void
     {
 
@@ -74,6 +58,10 @@ class LoginController extends Controller
 
     }
 
+
+    /**
+     * Gestion de la deconnection
+     */
     public function logoutProcess():void
     {
         session_destroy();

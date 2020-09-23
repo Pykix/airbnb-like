@@ -7,6 +7,8 @@
     use Core\Repository;
     use PDO;
 
+
+   // Class qui gere les details des annonces
     class StandardRepository extends Repository
     {
         public function getTable(): string
