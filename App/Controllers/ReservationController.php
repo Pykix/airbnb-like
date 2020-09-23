@@ -33,8 +33,7 @@
 
         public function delete($id)
         {
-            var_dump($id);
-            die();
+
             RepositoryManager::getRm()->getReservationRepo()->delete($id);
             header('Location: /mes-reservations');
         }

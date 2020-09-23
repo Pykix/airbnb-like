@@ -30,7 +30,7 @@
             // Tableau de résultats
             $results = [];
 
-            $query = sprintf( 'select * from %s as res
+            $query = sprintf( 'select res.id, user_id, offer_id, cp, start_date, end_date, title, author_id, chapo, price, picture, type, username from %s as res
                         join
                             offers o on o.id = res.offer_id
                         join
