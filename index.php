@@ -57,6 +57,7 @@
         ->post( '/register', LoginController::class . '@registerProcess' )
         ->get( '/logout', LoginController::class . '@logoutProcess' )
         ->get( '/detail/{id}', OfferController::class . '@show' )
+        ->get( '/delete/{id}', ReservationController::class . '@delete' )
         ->post( '/reservation', ReservationController::class . '@register' )
         ->get( '/mes-reservations', ReservationController::class . '@show' )
         ->get( '/mon-espace', OfferController::class . '@myAnnounces' )

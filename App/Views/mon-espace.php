@@ -46,7 +46,7 @@
                             <?php echo $reservation->price; ?> € / nuit
                         </p>
                         <p class="card-text">
-                            Date de debut : <?php echo $reservation->start_date; ?>
+                            Date de debut : <?php echo $reservation->start_date; ?><br>
                             Date de fin : <?php echo $reservation->end_date; ?>
                         </p>
                         <a href="/detail/<?php echo $announce->id ?>" class="btn btn-primary">Annuler</a>

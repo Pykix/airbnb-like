@@ -92,7 +92,7 @@ abstract class Repository
 		// Tableau de résultats
 		$arr_objects = [];
 
-		$query = 'SELECT * FROM ' . $this->getTable();
+		$query = 'SELECT * FROM ' . $this->getTable() . ' ORDER BY date_creation DESC' ;
 
 		// Exécution de la requête
 		$sth = $this->db_cnx->query( $query );

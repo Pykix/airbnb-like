@@ -11,7 +11,7 @@ use Zend\Diactoros\ServerRequest;
 
 class LoginController extends Controller
 {
-	public function login(): void
+/*	public function login(): void
 	{
 		$view = new View( 'login' );
 
@@ -22,7 +22,7 @@ class LoginController extends Controller
 		];
 
 		$view->render( $view_data );
-	}
+	}*/
 
 
 	public function loginProcess(ServerRequest $request): void
@@ -43,7 +43,7 @@ class LoginController extends Controller
 
 	}
 
-	public function register():void
+/*	public function register():void
     {
         $view = new View('register');
 
@@ -53,7 +53,7 @@ class LoginController extends Controller
 
         ];
         $view->render($view_data);
-    }
+    }*/
 
     public function registerProcess(ServerRequest $request): void
     {

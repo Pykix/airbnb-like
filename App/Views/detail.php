@@ -2,8 +2,6 @@
 
 <?php $offer_id = ''; ?>
 
-
-
     <div class="page-content">
 
         <img class="my-3 rounded mx-auto d-block" src="<?php echo IMG_PATH . $details->picture ?>" style="width: 50%">

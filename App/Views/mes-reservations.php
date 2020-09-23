@@ -5,6 +5,7 @@
     <?php if (count( $reservationDetail ) > 0): ?>
     <div class="row">
         <?php foreach ($reservationDetail as $reservation): ?>
+            <?php var_dump($reservation) ?>
             <div class="col-auto">
                 <div class="card" style="width: 18rem;">
                     <img src="<?php echo IMG_PATH . $reservation->picture; ?>" class="card-img-top" alt="...">
@@ -18,6 +19,7 @@
                             <?php echo $reservation->price; ?> € / nuit
                         </p>
                         <a href="/detail/<?php echo $reservation->offer_id ?>" class="btn btn-primary">Voir</a>
+                        <a href="/delete/<?php echo $reservation->id ?>" class="btn btn-warning">Annuler</a>
                     </div>
                 </div>
             </div>

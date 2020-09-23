@@ -39,7 +39,11 @@
                         <?php if (isset( $_SESSION[ 'username' ] )): ?>
                             <a class="nav-link" href="/logout">logout</a>
                         <?php else: ?>
-                            <a class="nav-link" href="/login">login</a>
+                            <!-- Button trigger modal -->
+                            <button  class="nav-link styled" data-toggle="modal" data-target="#staticBackdrop">
+                                Connexion / Inscription
+                            </button>
+                           <!-- <a class="" href="/login">login</a>-->
                         <?php endif; ?>
                     </li>
 
@@ -47,5 +51,6 @@
             </div>
         </div>
     </nav>
+
 </header>
 <div class="container">

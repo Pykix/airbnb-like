@@ -30,11 +30,11 @@
             // Tableau de résultats
             $results = [];
 
-            $query = sprintf( 'select * from %s
+            $query = sprintf( 'select * from %s as res
                         join
-                            offers o on o.id = reservation.offer_id
+                            offers o on o.id = res.offer_id
                         join
-                            (select id, username from users) u on reservation.user_id = u.id
+                            (select id, username from users) u on res.user_id = u.id
                         WHERE u.id =:id', $this->getTable() );
 
             // Exécution de la requête
@@ -64,6 +64,10 @@
 
         public function findByReservation()
         {
+            if ($_SESSION['role'] != 0) {
+                header('Location: /');
+            }
+
             $results = [];
 
             $query = sprintf(
